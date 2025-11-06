@@ -1,0 +1,13 @@
+server.name: kibana
+server.host: "0.0.0.0"
+xpack.security.authc.providers:
+  basic.basic1:
+    order: 0
+  anonymous.anonymous1:
+    order: 1
+    credentials:
+      username: "anonymous_service_account"
+      password: "anonymous_service_account_password"
+xpack.security.authc.selector.enabled: false
+xpack.security.sameSiteCookies: "None"
+server.publicBaseUrl: "https://{YOUR_IP}:5601"

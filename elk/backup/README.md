@@ -7,7 +7,7 @@ This script automatically exports all **Kibana saved objects** (dashboards, visu
 ## Overview
 
 - **File:** `kibana_backup.sh`  
-- **Output:** `/root/ELK/backup/kibana_backup.ndjson`  
+- **Output:** `kibana_backup.ndjson`  
 - **Schedule:** Monthly via **crontab**  
 - **Credentials:** Loaded securely from `/ELK/.env`
 

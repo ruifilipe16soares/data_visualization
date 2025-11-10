@@ -15,7 +15,7 @@ This script automatically exports all **Kibana saved objects** (dashboards, visu
 
 ## Crontab Setup
 
-To schedule the backup every month (e.g., day 1 at 3 AM):
+To schedule the backup every month (e.g., day 1 at 2 AM):
 
 ```bash
 crontab -e

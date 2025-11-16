@@ -48,3 +48,37 @@ After installation, you can safely start the Kafka stack:
 `docker-compose up -d`
 
 IMP: Don't forget to write your credentials in `secrets` folder, on both files.
+
+```
+CRIAR CONECTORES:
+
+curl -X POST -H "Content-Type: application/json" \
+     --data @mysql-connector.json \
+     http://localhost:8083/connectors
+
+curl -X GET "http://localhost:8083/connectors/mysql-connector-chtv/status"
+
+docker exec -it kafka sh -c "/kafka/bin/kafka-console-consumer.sh --bootstrap-server kafka:9092 --topic mysql-chtv.chtv.pedido --from-beginning"
+
+
+COPIAR O CERTIFICADO PARA A DIRETORIA root/ELK:
+docker cp es01:/usr/share/elasticsearch/config/certs/ca/ca.crt ./ca.crt
+
+Sai do Container e executa este comando na VM para copiar novamente o ficheiro com permissões abertas:
+docker cp --archive /root/docker/docker/elk/ca.crt connect:/tmp/ca.crt
+
+Então força a cópia com permissão global:
+docker exec --user root connect keytool -import -trustcacerts -alias elastic-ca -file /tmp/ca.crt -keystore /etc/java/java-11-openjdk/java-11-openjdk-11.0.20.0.8-1.fc37.x86_64/lib/security/cacerts -storepass changeit -noprompt
+
+DEPOIS REINICIEI O connect: 
+docker restart connect
+
+
+
+
+curl -X POST -H "Content-Type: application/json" \
+     --data @elasticsearch-connector.json \
+     http://localhost:8083/connectors
+
+
+curl -X GET "http://localhost:8083/connectors/elasticsearch-connector-chtv/status"

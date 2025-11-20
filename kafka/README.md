@@ -124,11 +124,24 @@ docker restart connect
  Once restarted, the MySQL Debezium connector will stream data from your MySQL database into Kafka topics, which can then be synchronized with Elasticsearch:
 
 
+## Creating the Elasticsearch Connector (Kafka → Elasticsearch)
 
+This section explains how to create the **Elasticsearch Sink Connector**, which reads messages from Kafka topics and indexes them into Elasticsearch.
 
+Once the JSON file is saved, create the connector with:
+
+```bash
 curl -X POST -H "Content-Type: application/json" \
      --data @elasticsearch-connector.json \
      http://localhost:8083/connectors
+```
 
+Verify that the connector is running correctly:
 
+```bash
 curl -X GET "http://localhost:8083/connectors/elasticsearch-connector-chtv/status"
+```
+
+Once active, the connector will automatically pull data from Kafka topics and index them into your Elasticsearch cluster. 
+-> If you open Kibana, in the tab "Indices" you can check the indices being created.
+

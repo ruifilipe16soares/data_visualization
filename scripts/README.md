@@ -215,6 +215,7 @@ crontab -l
 -> With the new indices created, we can now build data views in Kibana based on these indices.
 These data views act as the foundation for creating rich visualizations and interactive dashboards,
 allowing us to explore and analyze the transformed data through charts, tables, and filters tailored to our needs.
+
 ---
 
 ## Example Visualization
@@ -222,5 +223,5 @@ allowing us to explore and analyze the transformed data through charts, tables, 
 Below is an example of one of the visualizations created in Kibana,  
 built using the transformed data and the defined data views:
 
-![Example Kibana Visualization](/mnt/data/example_grafic.png)
+![Example Kibana Visualization](/mnt/data/example_grafic.PNG)
 
